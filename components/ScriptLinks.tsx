@@ -51,7 +51,7 @@ export default function ScriptLinks({ onSectionClick }: ScriptLinksProps) {
       <div className="mb-3">
         <h3 className="text-sm font-bold text-apo-text-dark mb-2 flex items-center">
           <ExternalLink className="w-4 h-4 mr-2 text-apo-purple" />
-          Script Navigation
+          Quick Links
         </h3>
         <p className="text-xs text-apo-text-medium">
           Click to jump to script sections

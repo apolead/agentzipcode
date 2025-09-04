@@ -55,8 +55,8 @@ export default function QuickLinks() {
     <div className="bg-apo-white rounded-lg shadow-lg p-4 mt-4">
       <div className="mb-3">
         <h3 className="text-sm font-bold text-apo-text-dark mb-2 flex items-center">
-          <ExternalLink className="w-4 h-4 mr-2 text-apo-purple" />
-          Quick Links
+          <Globe className="w-4 h-4 mr-2 text-apo-cyan" />
+          Web Links
         </h3>
         <p className="text-xs text-apo-text-medium">
           External resources from agent scripts

@@ -212,10 +212,10 @@ export default function ZipCodeLookup({ onScriptSectionClick }: ZipCodeLookupPro
         </div>
       </div>
       
-      {/* Script Links Card */}
+      {/* Quick Links Card */}
       <ScriptLinks onSectionClick={(sectionId) => onScriptSectionClick?.(sectionId)} />
       
-      {/* Quick Links Card */}
+      {/* Web Links Card */}
       <QuickLinks />
     </div>
   )
