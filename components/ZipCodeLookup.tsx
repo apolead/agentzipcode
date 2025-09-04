@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { Search, CheckCircle, XCircle, AlertCircle, MapPin } from 'lucide-react'
 import Papa from 'papaparse'
 import ScriptLinks from './ScriptLinks'
+import QuickLinks from './QuickLinks'
 
 interface ZipCodeData {
   zip: string
@@ -213,6 +214,9 @@ export default function ZipCodeLookup({ onScriptSectionClick }: ZipCodeLookupPro
       
       {/* Script Links Card */}
       <ScriptLinks onSectionClick={(sectionId) => onScriptSectionClick?.(sectionId)} />
+      
+      {/* Quick Links Card */}
+      <QuickLinks />
     </div>
   )
 }
