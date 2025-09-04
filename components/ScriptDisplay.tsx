@@ -1,7 +1,7 @@
 'use client'
 
-import { useState } from 'react'
-import { Phone, MessageSquare, AlertTriangle, PhoneCall, ChevronRight, ChevronDown } from 'lucide-react'
+import React, { useState } from 'react'
+import { Phone, MessageSquare, AlertTriangle, PhoneCall, ChevronRight, ChevronDown, BookOpen } from 'lucide-react'
 
 export default function ScriptDisplay() {
   const [expandedSections, setExpandedSections] = useState<string[]>(['inbound'])
@@ -174,52 +174,55 @@ Thumbtack is a trusted platform that connects homeowners with top-rated local pr
   ]
 
   return (
-    <div className="p-8 space-y-6">
-      <div className="text-center mb-8">
-        <h2 className="text-3xl font-bold text-apo-text-dark mb-4">Agent Scripts</h2>
-        <p className="text-lg text-apo-text-medium leading-relaxed max-w-3xl mx-auto">
-          Streamlined call center scripts organized by call type and situation. Click on each section to expand and view detailed scripts.
+    <div className="space-y-4">
+      <div className="mb-4">
+        <h2 className="text-xl font-bold text-apo-text-dark mb-2 flex items-center">
+          <BookOpen className="w-5 h-5 mr-2 text-apo-purple" />
+          Agent Scripts
+        </h2>
+        <p className="text-sm text-apo-text-medium">
+          Click sections to expand and view call scripts
         </p>
       </div>
 
       {scriptSections.map((section) => (
-        <div key={section.id} className="bg-apo-white rounded-xl shadow-lg overflow-hidden border border-gray-100">
+        <div key={section.id} className="bg-apo-white rounded-lg shadow-md overflow-hidden border border-gray-100">
           <button
             onClick={() => toggleSection(section.id)}
-            className={`w-full p-8 text-left flex items-center justify-between hover:bg-purple-50 transition-all`}
+            className={`w-full p-4 text-left flex items-center justify-between hover:bg-purple-50 transition-all`}
           >
-            <div className="flex items-center space-x-6">
-              <div className={`p-4 ${section.color} text-white rounded-xl shadow-md`}>
-                {section.icon}
+            <div className="flex items-center space-x-3">
+              <div className={`p-2 ${section.color} text-white rounded-lg`}>
+                {React.cloneElement(section.icon, { className: 'w-4 h-4' })}
               </div>
-              <h3 className="text-2xl font-bold text-apo-text-dark">{section.title}</h3>
+              <h3 className="text-sm font-bold text-apo-text-dark">{section.title}</h3>
             </div>
             {expandedSections.includes(section.id) ? (
-              <ChevronDown className="w-6 h-6 text-apo-text-medium" />
+              <ChevronDown className="w-4 h-4 text-apo-text-medium" />
             ) : (
-              <ChevronRight className="w-6 h-6 text-apo-text-medium" />
+              <ChevronRight className="w-4 h-4 text-apo-text-medium" />
             )}
           </button>
 
           {expandedSections.includes(section.id) && (
-            <div className="px-8 pb-8 space-y-8">
+            <div className="px-4 pb-4 space-y-4">
               {section.sections && section.sections.map((subsection, index) => (
-                <div key={index} className="border-l-4 border-apo-cyan pl-8 py-4">
-                  <h4 className="text-xl font-bold text-apo-text-dark mb-4">{subsection.title}</h4>
-                  <div className="bg-gradient-to-r from-gray-50 to-blue-50 p-6 rounded-xl mb-4 border border-gray-100">
-                    <p className="text-apo-text-dark whitespace-pre-line leading-relaxed text-lg">{subsection.content}</p>
+                <div key={index} className="border-l-2 border-apo-cyan pl-4 py-2">
+                  <h4 className="text-sm font-bold text-apo-text-dark mb-2">{subsection.title}</h4>
+                  <div className="bg-gray-50 p-3 rounded-lg mb-3 border border-gray-100">
+                    <p className="text-apo-text-dark whitespace-pre-line text-xs leading-relaxed">{subsection.content}</p>
                   </div>
                   {subsection.action && (
-                    <div className="bg-gradient-to-r from-yellow-50 to-amber-50 border-2 border-yellow-200 p-6 rounded-xl">
-                      <p className="font-bold text-yellow-800 mb-3 text-lg">🎯 Agent Action:</p>
-                      <p className="text-yellow-700 whitespace-pre-line leading-relaxed">{subsection.action}</p>
+                    <div className="bg-yellow-50 border border-yellow-200 p-3 rounded-lg">
+                      <p className="font-bold text-yellow-800 mb-1 text-xs">🎯 Agent Action:</p>
+                      <p className="text-yellow-700 whitespace-pre-line text-xs leading-relaxed">{subsection.action}</p>
                     </div>
                   )}
                   {subsection.benefits && (
-                    <div className="space-y-3 mt-4">
-                      <p className="font-bold text-apo-text-dark mb-4 text-lg">💡 Benefits to mention (pick 1-2):</p>
+                    <div className="space-y-2 mt-3">
+                      <p className="font-bold text-apo-text-dark mb-2 text-xs">💡 Benefits (pick 1-2):</p>
                       {subsection.benefits.map((benefit, i) => (
-                        <div key={i} className="bg-gradient-to-r from-apo-cyan to-blue-400 border-l-4 border-apo-purple p-4 text-white rounded-lg shadow-md">
+                        <div key={i} className="bg-gradient-to-r from-apo-cyan to-blue-400 border-l-2 border-apo-purple p-2 text-white rounded text-xs">
                           {benefit}
                         </div>
                       ))}
@@ -229,21 +232,21 @@ Thumbtack is a trusted platform that connects homeowners with top-rated local pr
               ))}
 
               {section.objections && (
-                <div className="space-y-6">
+                <div className="space-y-3">
                   {section.objections.map((objection, index) => (
-                    <div key={index} className="bg-gradient-to-r from-red-50 to-pink-50 border-2 border-red-200 rounded-xl p-6 shadow-lg">
-                      <h4 className="text-xl font-bold text-red-800 mb-4">💬 "{objection.objection}"</h4>
+                    <div key={index} className="bg-red-50 border border-red-200 rounded-lg p-3">
+                      <h4 className="text-sm font-bold text-red-800 mb-2">💬 "{objection.objection}"</h4>
                       {objection.rebuttal && (
-                        <div className="bg-white p-6 rounded-lg shadow-sm border border-red-100">
-                          <p className="text-apo-text-dark whitespace-pre-line leading-relaxed">{objection.rebuttal}</p>
+                        <div className="bg-white p-3 rounded border border-red-100">
+                          <p className="text-apo-text-dark whitespace-pre-line text-xs leading-relaxed">{objection.rebuttal}</p>
                         </div>
                       )}
                       {objection.rebuttals && (
-                        <div className="space-y-4 mt-4">
+                        <div className="space-y-2 mt-2">
                           {objection.rebuttals.map((rebuttal, i) => (
-                            <div key={i} className="bg-gradient-to-r from-red-100 to-pink-100 border-l-4 border-red-400 p-5 rounded-lg">
-                              <h5 className="font-bold text-red-800 mb-3 text-lg">{rebuttal.title}</h5>
-                              <p className="text-red-700 leading-relaxed">{rebuttal.content}</p>
+                            <div key={i} className="bg-red-100 border-l-2 border-red-400 p-2 rounded">
+                              <h5 className="font-bold text-red-800 mb-1 text-xs">{rebuttal.title}</h5>
+                              <p className="text-red-700 text-xs leading-relaxed">{rebuttal.content}</p>
                             </div>
                           ))}
                         </div>
