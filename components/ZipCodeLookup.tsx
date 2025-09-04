@@ -147,7 +147,7 @@ export default function ZipCodeLookup() {
   }
 
   return (
-    <div className="bg-apo-white rounded-lg shadow-lg p-4 sticky top-24">
+    <div className="bg-apo-white rounded-lg shadow-lg p-4">
       <div className="mb-4">
         <h2 className="text-lg font-bold text-apo-text-dark mb-2 flex items-center">
           <Search className="w-4 h-4 mr-2 text-apo-purple" />
