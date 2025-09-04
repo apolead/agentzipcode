@@ -89,8 +89,43 @@ export default function QuickLinks() {
         ))}
       </div>
 
-      {/* Usage Instructions */}
+      {/* Quick Actions */}
       <div className="mt-3 pt-3 border-t border-gray-100">
+        <div className="text-xs font-medium text-apo-text-dark mb-2">Quick Actions:</div>
+        <div className="grid grid-cols-2 gap-2 mb-3">
+          <button
+            onClick={() => {
+              // Expand all sections
+              const buttons = document.querySelectorAll('[data-section-toggle]')
+              buttons.forEach(button => {
+                const section = button.getAttribute('data-section-toggle')
+                if (section && !document.querySelector(`[data-section-content="${section}"]`)) {
+                  (button as HTMLElement).click()
+                }
+              })
+            }}
+            className="text-xs p-2 bg-apo-purple text-white rounded hover:bg-apo-hover-purple transition-colors"
+          >
+            Expand All Scripts
+          </button>
+          <button
+            onClick={() => {
+              // Collapse all sections
+              const buttons = document.querySelectorAll('[data-section-toggle]')
+              buttons.forEach(button => {
+                const section = button.getAttribute('data-section-toggle')
+                if (section && document.querySelector(`[data-section-content="${section}"]`)) {
+                  (button as HTMLElement).click()
+                }
+              })
+            }}
+            className="text-xs p-2 border border-apo-purple text-apo-purple rounded hover:bg-apo-purple hover:text-white transition-colors"
+          >
+            Collapse All
+          </button>
+        </div>
+
+        {/* Usage Instructions */}
         <div className="text-xs text-apo-text-medium">
           <div className="flex items-center mb-1">
             <Shield className="w-3 h-3 mr-1 text-apo-purple" />

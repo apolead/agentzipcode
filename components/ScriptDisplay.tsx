@@ -3,34 +3,8 @@
 import React, { useState } from 'react'
 import { Phone, MessageSquare, AlertTriangle, PhoneCall, ChevronRight, ChevronDown, BookOpen } from 'lucide-react'
 
-interface ScriptDisplayProps {
-  onSectionClick?: (sectionId: string) => void
-}
-
-export default function ScriptDisplay({ onSectionClick }: ScriptDisplayProps) {
+export default function ScriptDisplay() {
   const [expandedSections, setExpandedSections] = useState<string[]>(['inbound'])
-
-  const handleSectionClick = (sectionId: string) => {
-    // Expand the section if it's not already expanded
-    if (!expandedSections.includes(sectionId)) {
-      setExpandedSections(prev => [...prev, sectionId])
-    }
-    
-    // Smooth scroll to the section
-    setTimeout(() => {
-      const element = document.getElementById(`script-section-${sectionId}`)
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth', block: 'start' })
-      }
-    }, 100)
-  }
-
-  // Expose the function for external use
-  React.useEffect(() => {
-    if (onSectionClick) {
-      onSectionClick(handleSectionClick)
-    }
-  }, [onSectionClick])
 
   const toggleSection = (section: string) => {
     setExpandedSections(prev =>
