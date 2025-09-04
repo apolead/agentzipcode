@@ -6,6 +6,14 @@ import ZipCodeLookup from '@/components/ZipCodeLookup'
 import ScriptDisplay from '@/components/ScriptDisplay'
 
 export default function Dashboard() {
+  const [scriptSectionHandler, setScriptSectionHandler] = useState<((sectionId: string) => void) | null>(null)
+
+  const handleScriptSectionClick = (sectionId: string) => {
+    if (scriptSectionHandler) {
+      scriptSectionHandler(sectionId)
+    }
+  }
+
   return (
     <div className="space-y-6">
       {/* Hero Section - Compact */}
@@ -22,12 +30,12 @@ export default function Dashboard() {
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
         {/* Scripts Section - Left Side (3/4 width) */}
         <div className="lg:col-span-3">
-          <ScriptDisplay />
+          <ScriptDisplay onSectionClick={setScriptSectionHandler} />
         </div>
         
         {/* Zip Code Lookup - Right Side (1/4 width) */}
         <div className="lg:col-span-1">
-          <ZipCodeLookup />
+          <ZipCodeLookup onScriptSectionClick={handleScriptSectionClick} />
         </div>
       </div>
     </div>

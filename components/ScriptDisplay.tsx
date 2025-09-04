@@ -3,8 +3,34 @@
 import React, { useState } from 'react'
 import { Phone, MessageSquare, AlertTriangle, PhoneCall, ChevronRight, ChevronDown, BookOpen } from 'lucide-react'
 
-export default function ScriptDisplay() {
+interface ScriptDisplayProps {
+  onSectionClick?: (sectionId: string) => void
+}
+
+export default function ScriptDisplay({ onSectionClick }: ScriptDisplayProps) {
   const [expandedSections, setExpandedSections] = useState<string[]>(['inbound'])
+
+  const handleSectionClick = (sectionId: string) => {
+    // Expand the section if it's not already expanded
+    if (!expandedSections.includes(sectionId)) {
+      setExpandedSections(prev => [...prev, sectionId])
+    }
+    
+    // Smooth scroll to the section
+    setTimeout(() => {
+      const element = document.getElementById(`script-section-${sectionId}`)
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }
+    }, 100)
+  }
+
+  // Expose the function for external use
+  React.useEffect(() => {
+    if (onSectionClick) {
+      onSectionClick(handleSectionClick)
+    }
+  }, [onSectionClick])
 
   const toggleSection = (section: string) => {
     setExpandedSections(prev =>
@@ -186,9 +212,14 @@ Thumbtack is a trusted platform that connects homeowners with top-rated local pr
       </div>
 
       {scriptSections.map((section) => (
-        <div key={section.id} className="bg-apo-white rounded-lg shadow-md overflow-hidden border border-gray-100">
+        <div 
+          key={section.id} 
+          id={`script-section-${section.id}`}
+          className="bg-apo-white rounded-lg shadow-md overflow-hidden border border-gray-100"
+        >
           <button
             onClick={() => toggleSection(section.id)}
+            data-section-toggle={section.id}
             className={`w-full p-4 text-left flex items-center justify-between hover:bg-purple-50 transition-all`}
           >
             <div className="flex items-center space-x-3">
@@ -205,7 +236,7 @@ Thumbtack is a trusted platform that connects homeowners with top-rated local pr
           </button>
 
           {expandedSections.includes(section.id) && (
-            <div className="px-4 pb-4 space-y-4">
+            <div className="px-4 pb-4 space-y-4" data-section-content={section.id}>
               {section.sections && section.sections.map((subsection, index) => (
                 <div key={index} className="border-l-2 border-apo-cyan pl-4 py-2">
                   <h4 className="text-sm font-bold text-apo-text-dark mb-2">{subsection.title}</h4>

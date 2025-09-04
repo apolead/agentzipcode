@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { Search, CheckCircle, XCircle, AlertCircle, MapPin } from 'lucide-react'
 import Papa from 'papaparse'
+import ScriptLinks from './ScriptLinks'
 
 interface ZipCodeData {
   zip: string
@@ -11,7 +12,11 @@ interface ZipCodeData {
   active: string
 }
 
-export default function ZipCodeLookup() {
+interface ZipCodeLookupProps {
+  onScriptSectionClick?: (sectionId: string) => void
+}
+
+export default function ZipCodeLookup({ onScriptSectionClick }: ZipCodeLookupProps) {
   const [zipCode, setZipCode] = useState('')
   const [result, setResult] = useState<{
     status: 'active' | 'inactive' | 'not_found' | null
@@ -205,6 +210,9 @@ export default function ZipCodeLookup() {
           <div className="text-xs">Inactive</div>
         </div>
       </div>
+      
+      {/* Script Links Card */}
+      <ScriptLinks onSectionClick={(sectionId) => onScriptSectionClick?.(sectionId)} />
     </div>
   )
 }
