@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import { ExternalLink, Globe, FileText, Shield } from 'lucide-react'
+import { ExternalLink, Globe, FileText, Shield, ClipboardList } from 'lucide-react'
 
 export default function QuickLinks() {
   const quickLinks = [
@@ -31,6 +31,42 @@ export default function QuickLinks() {
       icon: <FileText className="w-3 h-3" />,
       color: 'bg-green-500',
       purpose: 'Privacy policy reference'
+    },
+    {
+      id: 'roofing-order',
+      title: 'Roofing Order Form',
+      url: 'https://forms.gle/Rf8TMzL6EZzc9TEKA',
+      description: 'Submit roofing orders',
+      icon: <ClipboardList className="w-3 h-3" />,
+      color: 'bg-orange-500',
+      purpose: 'Process roofing project orders'
+    },
+    {
+      id: 'bath-order',
+      title: 'Bath Order Form',
+      url: 'https://forms.gle/wLc2msP8yCb355Kj6',
+      description: 'Submit bath orders',
+      icon: <ClipboardList className="w-3 h-3" />,
+      color: 'bg-blue-600',
+      purpose: 'Process bathroom project orders'
+    },
+    {
+      id: 'kitchen-order',
+      title: 'Kitchen Order Form',
+      url: 'https://forms.gle/NhdWcJEZbTSVkKpM9',
+      description: 'Submit kitchen orders',
+      icon: <ClipboardList className="w-3 h-3" />,
+      color: 'bg-red-500',
+      purpose: 'Process kitchen project orders'
+    },
+    {
+      id: 'windows-order',
+      title: 'Windows Order Form',
+      url: 'https://docs.google.com/forms/d/e/1FAIpQLSduNW1-_0tkCz1PYmY96C8Hizxu-hmliQ6GPrmvq05HIajOUA/viewform?usp=sharing&ouid=102385696802008243214',
+      description: 'Submit window orders',
+      icon: <ClipboardList className="w-3 h-3" />,
+      color: 'bg-indigo-500',
+      purpose: 'Process window project orders'
     }
   ]
 
